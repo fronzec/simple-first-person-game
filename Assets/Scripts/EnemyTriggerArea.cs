@@ -22,7 +22,7 @@ public class EnemyTriggerArea : MonoBehaviour
 		{
 			this.GetComponentInParent<AgentSimplePatrol>()._isPlayerDetected = false;
 			this.GetComponentInParent<AgentSimplePatrol>()._playerTransform = null;
-			this.GetComponentInParent<NavMeshAgent>().speed = 7f;
+			this.GetComponentInParent<NavMeshAgent>().speed = 8f;
 		}
 	}
 }
