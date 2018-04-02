@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//Perform operation with items in the world
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PanelsController _hud;
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _myGameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<MyGameController>();
-        keysPickeds = 4;
+        keysPickeds = 0;
     }
 
     // Update is called once per frame
@@ -47,14 +48,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Perform trigger filter operations check
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("KeyItem"))
+        if (other.CompareTag("KeyItem"))//Key item near , show panel
         {
             _hud.OpenMessagePanel("-Press F to Pickup Key");
             _tempItem2Pickup = other.gameObject;
         }
-        else if (other.CompareTag("CapturedArea"))
+        else if (other.CompareTag("CapturedArea"))//If this trigger was fired the player is captured
         {
             _hud.OpenMessagePanel("You are been captured!!! \n Press R to restart the game ");
 //            _hud.OpenTryAgainPanel();
@@ -66,16 +68,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("KeyItem"))
+        if (other.CompareTag("KeyItem"))//Hide panel
         {
             _hud.CloseMessagePanel();
             _tempItem2Pickup = null;
         }
     }
 
-    public void AddItemKeyToInventory(GameObject item)
+    public void AddItemKeyToInventory(GameObject item)//Add item to inventory
     {
         //TODO replace by more efficient inventory mecanism like a List
+        //TODO play a sound
         keysPickeds++;
         Debug.Log("Now you have " + keysPickeds);
     }

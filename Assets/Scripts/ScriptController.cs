@@ -1,30 +1,31 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
+//This script modify other scripts in the same object(enable and disable controls)
 public class ScriptController : MonoBehaviour
 {
 
 	private GameObject _myGameController;
-	// Use this for initialization
 	void Start ()
 	{
 		_myGameController = GameObject.FindGameObjectWithTag("GameController");
 		if (!_myGameController.GetComponent<MyGameController>().isControllsActive)
 		{
 			//Disable scripts that allow input
-			GetComponent<MyFirstPersonController>().AllowOperations = false;
+			GetComponent<FirstPersonController>().AllowOperations = false;
 		}
 	}
 	
-	// Update is called once per frame
 	void Update () {
+		///Check every frame if controlls are allowed
 		if (_myGameController.GetComponent<MyGameController>().isControllsActive)
 		{
 			//Disable scripts that allow input
-			GetComponent<MyFirstPersonController>().AllowOperations = true;
+			GetComponent<FirstPersonController>().AllowOperations = true;
 		}
 		else
 		{
-			GetComponent<MyFirstPersonController>().AllowOperations = false;
+			GetComponent<FirstPersonController>().AllowOperations = false;
 		}
 		
 	}

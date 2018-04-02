@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//This scripts controls if panel are showed or hided
 public class PanelsController : MonoBehaviour
 {
     [SerializeField] private GameObject messagesPanel;

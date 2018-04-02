@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+//Check if player is detected using view-like detection
 public class EnemyTriggerArea : MonoBehaviour
 {
-
-	[SerializeField] private Transform playerPosition;
 	[SerializeField] private Transform _restartPointPatrol;
 
 	private void OnTriggerEnter(Collider other)
@@ -13,7 +12,7 @@ public class EnemyTriggerArea : MonoBehaviour
 		{
 
 			this.GetComponentInParent<AgentSimplePatrol>()._isPlayerDetected = true;
-			this.GetComponentInParent<AgentSimplePatrol>()._playerTransform = playerPosition;
+			this.GetComponentInParent<AgentSimplePatrol>()._playerTransform = other.transform;
 		}
 	}
 

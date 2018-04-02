@@ -20,12 +20,13 @@ public class ExitLevel : MonoBehaviour
         {
             if (other.GetComponent<PlayerController>().keysPickeds >= _requiredKeys)
             {
+                //Show cursor on screen or something like that
                 _hud.OpenMessagePanel("Exelent you scape from Lvl 1 \n Press Enter to continue ...");
                 _myGameController.SetLevelComplete();
             }
             else
             {
-                _hud.OpenMessagePanel("You need more keys to scape !!!");
+                _hud.OpenMessagePanel("You don't have enought information to scape !!!");
                 StartCoroutine("HideNeedMoreKeysPanel");
             }
         }

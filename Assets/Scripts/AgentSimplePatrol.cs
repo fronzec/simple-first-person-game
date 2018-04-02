@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+//Enemy behavior, if no player detected tha agent patrol between points specified on editor
 public class AgentSimplePatrol : MonoBehaviour
 {
     //Activate if agent should wait on point
@@ -11,7 +12,7 @@ public class AgentSimplePatrol : MonoBehaviour
     [SerializeField] float waitTimeOnPoint;
 
     //Probability to change direction of patrol
-    [SerializeField] float _switchDirectionProbability = 0.2f;
+    [SerializeField] float _switchDirectionProbability = 0.1f;
 
     [SerializeField] List<PatrolPoint> patrolPoints;
 
@@ -22,7 +23,7 @@ public class AgentSimplePatrol : MonoBehaviour
     private bool _isGoindForward;
     private float _waitTimer;
 
-    // Player info
+    // The speed increase when player is detected
     private float _runSpeedOnDetect = 10f;
 
     [HideInInspector] public bool _isPlayerDetected;
@@ -56,13 +57,13 @@ public class AgentSimplePatrol : MonoBehaviour
 
     public void Update()
     {
-        if (!CheckIfGameOver())
+        if (!CheckIfGameOver())//Only do operations if game still running
         {
-            if (_isPlayerDetected)
+            if (_isPlayerDetected)//If targer is player
             {
                 ChangeTargetToPlayer();
             }
-            else
+            else//If target is patrol point
             {
                 if (_isAgentTraveling && _navMeshAgent.remainingDistance <= 1.0f)
                 {
@@ -99,7 +100,7 @@ public class AgentSimplePatrol : MonoBehaviour
     }
 
     /// <summary>
-    /// Switch to next patrol point, forward or backward
+    /// Switch to next patrol point, forward or backward, depends of probability direction
     /// </summary>
     private void ChangePatrolPoint()
     {
